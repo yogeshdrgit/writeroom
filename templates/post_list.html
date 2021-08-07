@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block content %}
+      <style media="screen">
+        html{
+          position: relative;
+          max-height: 100%;
+        }
+        body{
+          font-family: cursive;
+        }
+    </style>
+    <h2 class="text-center">NTH Social Media App</h2>
+
+    <div class="messages">
+        {% if messages %}
+
+            {% for message in messages %}
+            <p class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </p>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+
+
+        <div class="row">
+          {% for post in posts %}
+          <div class="col-md-6">
+            <div class="img-thumbnail">
+                <a href='{{ post.get_absolute_url }}'>{{ post.title }}</a> <small style='float:right;'>{{ post.created }}</small><br>
+                Author: {{ post.author }} <br>
+                {{ post.body }}
+            </div>
+            <br>
+          </div>
+          {% empty %}
+          <div class="container-fluid">
+                <h2>No Posts Found Having Search Query {{ request.GET.query }}</h2>
+          </div>
+
+          {% endfor %}
+        </div>
+
+      <ul class='pagination'>
+        {% if posts.has_previous %}
+          <li class="page-item">
+                <a class="page-link" href="?page={{ posts.previous_page_number }}">&laquo</a>
+          </li>
+        {% endif %}
+
+          {% for p in posts.paginator.page_range %}
+          {% if posts.number == p %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ p }}">{{ p }}</a>
+            </li>
+          {% else %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ p }}">{{ p }}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+
+        {% if posts.has_next %}
+          <li class="page-item">
+                <a class="page-link" href="?page={{ posts.next_page_number }}">&raquo</a>
+          </li>
+        {% endif %}
+
+      </ul>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Login" class="btn btn-success">
+    <input type="reset" value="clear" class="btn btn-danger">
+</form>
+<a href="{% url 'register' %}">Register Here...</a>
+
+    <div class="messages">
+            {% if messages %}
+
+                {% for message in messages %}
+                <p class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </p>
+                {% endfor %}
+            {% endif %}
+        </div>
+{% endblock %}

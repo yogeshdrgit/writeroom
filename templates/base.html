@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    {% include 'cdnlines.html' %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    <div class="container-fluid mt-2 ml-2" >
+            {% block content %}
+
+            {% endblock %}
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function(event){
+            $('#delete').click(function(){
+                return confirm("Are You Sure to Delete This Post");
+            });
+
+            $(function(){
+                setTimeout(function(){
+                    $('.alert').slideUp(6000);
+                })
+
+            })
+
+
+        });
+    </script>
+
+
+</body>
+</html>

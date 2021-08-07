@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+
+            <div class="messages">
+                    {% if messages %}
+
+                        {% for message in messages %}
+                        <p class="alert alert-{{ message.tags }}">
+                            {{ message }}
+                        </p>
+                        {% endfor %}
+                    {% endif %}
+            </div>
+
+        <h2>{{ post.title }}</h2>
+        <small>Created by: {{ post.author }} </small><br>
+        <hr/>
+        <p>{{ post.body }}</p>
+
+        {{ total_likes }} Like{{ total_likes|pluralize }}
+        <form action="{% url 'like_post' %}" method="POST">
+            {% csrf_token %}
+            {% if is_liked %}
+            <button type="submit" name="post_id" value={{ post.id }} class="btn btn-danger">Dislike</button>
+            {% else %}
+            <button type="submit" name="post_id" value={{ post.id }} class="btn btn-primary">Like</button>
+            {% endif %}
+        </form>
+
+        {% if post.author == request.user %}
+        <div class="section-1" style="float:right;">
+            <a href="{% url 'post_edit' id=post.id %}">
+                <button type="button" name="button" class="btn btn-outline-success btn-lg">Edit</button>
+            </a>
+            <a href="{% url 'post_delete' id=post.id %}" id='delete'>
+                <button type="button" name="button" class="btn btn-outline-success btn-lg">Delete</button>
+            </a>
+            {% endif %}
+        </div>
+{% endblock %}
