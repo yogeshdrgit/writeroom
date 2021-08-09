@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,9 +27,7 @@ SECRET_KEY = '+*zz@an@&08ygmj6n-ohwggly!ssvz7^o&c8-f&4aro7n@8$ce'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    'writingspace.herokuapp.com'
-]
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -84,7 +83,7 @@ DATABASES = {
         'NAME': 'social7pmdb',
         'USER': 'root',
         'PASSWORD': 'root1234',
-        # 'HOST': '<yogeshgit>.mysql.pythonanywhere-services.com',
+        'HOST': '<yogeshgit>.mysql.pythonanywhere-services.com',
     }
 }
 
@@ -136,3 +135,6 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # STATIC_ROOT = BASE_DIR, 'static'
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
