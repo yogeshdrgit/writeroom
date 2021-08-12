@@ -76,23 +76,23 @@ WSGI_APPLICATION = 'nthsocialmediaproject.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+#
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'social7pmdb',
+#         'USER': 'root',
+#         'PASSWORD': 'root1234',
+#         # 'HOST': '<yogeshgit>.mysql.pythonanywhere-services.com',
+#     }
+# }
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'social7pmdb',
-        'USER': 'root',
-        'PASSWORD': 'root1234',
-        'HOST': '<yogeshgit>.mysql.pythonanywhere-services.com',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 
 
 # Password validation
@@ -138,5 +138,3 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
-
-STATIC_ROOT = 'staticfiles'
