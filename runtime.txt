@@ -4,3 +4,5 @@ Python 3.9
 Python-3.9
 Python 3.7.0
 Python-3.7.0
+Python 2.7
+Python-2.7
